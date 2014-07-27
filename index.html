@@ -63,7 +63,7 @@ if( window.location.search.match( /print-pdf/gi ) ) {
             <section>
                 <h2>Why this topic?</h2>
                 <ul>
-                    <li>People nowadays are stuck to their mobiles and other handhelds, reducing the realtime social interaction between peers even when physically present at the same spot.</li>
+                    <li>People nowadays are stuck to their mobiles and other handhelds, reducing face to face interaction between peers even when physically present at the same spot.</li>
                     <li>Since people nowadays are addicted to their gadgets and don’t let go of themselves, we aim at using these very gadgets to get them closer. </li>
                     <li>We want to bring back the concept of these old board games and spruce it up with digital features. </li>
                 </ul>
@@ -72,42 +72,89 @@ if( window.location.search.match( /print-pdf/gi ) ) {
                 <h2>Literature Survey</h2>
                 <ul>
                     <li>This application also educationally influences its users. We are incorporating the principles stated by Joshua H. Barnett, Leanna Archambault in November 2010. </li>
+                    <li>We are planning to modify the difficulty and genre of questions based on the paper "AI for Dynamic Difficulty Adjustment in Games" by Robin Hunicke, Vernell Chapman, Northwestern University,  using a probabalistic method for representing and reasoning uncertainty in games</li>
                 </ul>
+            </section>
+            <section>
+                <h2>Literature Survey (Contd.)</h2>
+                <li>Multiplayer Game capacity can be increased using the optimisation methods suggested by Hanghang Qi and David Malone, University of Ireland in "802.11 Wireless LAN Multiplayer Game Capacity and Optimization". In 802.11e wireless networks, with proper configuration of TXOP at the game server and access points, the network can be improved to support upto 15 players [A TXOP(Transmit Opportunity) is a bounded time interval during which a station can send as many frames as possible].</li>
             </section>
 
             <section>
                 <h2>The Game</h2>
                 <ul>
-                    <li>The game is an adaptation of "Snakes and Ladders" and "Scene it"</li>
-                    <li>The game can be played by as many players as we want.</li>
+                    <li>The game is an adaptation of "Snakes and Ladders" combined with some features of "Scene It"</li>
+                    <li>The game can be played by as many players as we want. For now we want to limit it to the number of people in our group, that is 5</li>
+                    <li>Its a turn based game. You advance only when its your turn.</li>
                     <li>A question appears on the screen, and all the participants are supposed to answer the question</li>
-                    <li>If a person seems to be doing well in one particular field, the questions would be from some other field. (Machine Learning)</li>
-                    <li>The question will be a combination of pictures, videos, audio clips in various topics to exploit the fact that the game is digital.</li>
-                    <li>The first person to reach the finish point is declared winner.</li>
+                    <li>Only the person whose turn it was advances, opponents get to limit the number of positions the player can advance.</li>
                 </ul>
             </section>
             <section>
-                <h3>For eg. </h3>
+                <h3>The Game (Contd.)</h3>
+                <ul>
+                    <li>The question will be a combination of pictures, videos, audio clips in various topics to exploit the fact that the game is digital.</li>
+                    <li>The first person to reach the finish point is declared winner.</li>
+                    <li>Each square has a different genre of question assigned to it. So the square you are in determines the question you will be asked in the next turn.</li>
+                    <li>The system has a database of questions, and we train the system by answering the questions, enabling it to identify the difficulty level.</li>
+                </ul>
+            </section>
+            <section>
+                <h3>For eg</h3>
                 <ul>
                     <li>For a 5 player game if 3 people answer the question quicker than the player playing his hand he moves 2 spaces ahead, or if he is the first to answer he moves 5 spaces ahead. </li>
                     <li>This keeps all the players engrossed as they are constantly interacting with the game.</li>
                 </ul>
             </section>
+            <section>
+                <h2>Design</h2>
+                <ul>
+                    <li>The board appears on the screen.</li>
+                    <li>The current player in turn is displayed on the left corner at the top, whereas points of the opponents appear on the right corner.</li>
+                    <li>The question appears down along with its options, and this appears on the devices as well.</li>
+                    <li>The options can be selected only on the phone</li>
+                </ul>
+            </section>
         </section>
         <section>
 
-            <section data-background="rpi.jpg" text="white">
-                <h2>Implementation</h2>
+            <section data-background="rpi.jpg">
+                <h1>Implementation</h1>
             </section>
             <section>
-                <h2>Basic flow diagram</h2>
-                <img src="flow.bmp" alt="" />
+                <h2>Implementation</h2>
+                <ul>
+                    <li>The Raspberry Pi runs a Server running Java </li>
+                    <li>We have a centralized corpus of questions running on a VPS.</li>
+                    <li>The pi handles displaying the Board UI to the Screen</li>
+                    <li>The pi also fetches questions from the VPS.</li>
+                    <li>The pi sends questions, options and scores to the mobile through sockets. </li>
+                </ul>
+            </section>
+            <section>
+                <h2>Implementation (Contd.)</h2>
+                <ul>
+                    <li>The client would be a native android app. (Could be extended to other platforms later).</li>
+                    <li>The android app displays the questions, options, and the user needs to pick the answer there.</li>
+                    <li>The communication between the Raspberry pi and the android app would happen through sockets.</li>
+                </ul>
             </section>
 
             <section data-transition="linear" data-background="#4d7e65" data-background-transition="slide">
-                <h2>Implementation(Block Diagram)</h2>
+                <h4>Implementation(Block Diagrams)</h4>
+                <img src="BlkDg.jpg" alt="" height="700px" width="400px" />
+            </section>
+            <section>
+                <img src="ServerAPI-amazon.jpg" alt="" />
+            </section>
+            <section>
+                <img src="QuestionCorpus-amazon.jpg" alt="" />
+            </section>
+            <section>
+                <img src="Game-ServerSide-amazon.jpg" alt="" />
             </section>
 
+           
             <section data-transition="linear" data-background="#8c4738" data-background-transition="slide">
                 <h2>Existing Solutions and Problems</h2>    
                 <ul>
@@ -128,7 +175,7 @@ if( window.location.search.match( /print-pdf/gi ) ) {
             <section>
                 <h2>How do we plan to tackle <br />the challenges</h2>
                 <ul>
-                    <li>The game must be tweaked according to the connection speed that is achievable. For eg a turn based game for a slow connection or a fast everyone-plays multiplayer game if the connection is fast enough</li>
+                    <li>The game must be tweaked according to the connection speed that is achievable.</li>
                     <li>The upper limit for number of players should be set based on the servers capability and the game that is chosen</li>
                     <li>The app must be able to work under a wobbly connection allowing players to reconnect and continue and not get kicked out</li>
                 </ul>   
@@ -137,7 +184,10 @@ if( window.location.search.match( /print-pdf/gi ) ) {
         <section>
             <h2>References</h2>
             <ol>
-                <li>http://www.editlib.org/p/65614/ research paper on multiplayer gaming</li>
+                <li><a href="http://www.editlib.org/p/65614/">http://www.editlib.org/p/65614/</a> research paper on multiplayer gaming</li>
+                <li><a href="http://www.hamilton.ie/dwmalone/netgames09.pdf">http://www.hamilton.ie/dwmalone/netgames09.pdf</a> a research paper on how Multiplayer game capacity can be optimised.</li>
+                <li><a href="http://cs.northwestern.edu/~hunicke/pubs/Hamlet.pdf">http://cs.northwestern.edu/~hunicke/pubs/Hamlet.pdf</a> a research paper on how difficulty can be modified dynamically in games</li>
+                <li><a href="http://web.cs.wpi.edu/~claypool/nossdav06/pdf/winter.pdf">http://web.cs.wpi.edu/~claypool/nossdav06/pdf/winter.pdf</a>a research paper on a A Hybrid Thin-Client protocol for Interactive Gaming Applications</li>
             </ol>
         </section>
         <section>
