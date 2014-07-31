@@ -1877,4 +1877,6 @@ body {
 	visibility: hidden;
 }
 
-
+li{
+	margin-bottom: 10px;
+}
